@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"context"
-	"github.com/fareskato/kabarda"
 	"net/http"
 )
 

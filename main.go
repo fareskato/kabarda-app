@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/fareskato/kabarda"
 	"myapp/data"
 	"myapp/handlers"
 	"myapp/middlewares"
