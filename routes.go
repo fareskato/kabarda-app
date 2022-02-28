@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/go-chi/chi/v5"
 	"net/http"
 )
@@ -9,8 +8,7 @@ import (
 // routes contains all application routes and uses Kabarda Routes of type *chi.Mux
 func (a *application) routes() *chi.Mux {
 	// middlewares go first
-	// remember me middleware
-	a.use(a.Middleware.CheckRemember)
+
 
 	// routes go here
 	a.get("/", a.Handlers.Home)

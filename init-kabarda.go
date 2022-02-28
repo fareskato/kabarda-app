@@ -6,6 +6,7 @@ import (
 	"myapp/handlers"
 	"myapp/middlewares"
 	"os"
+	"github.com/fareskato/kabarda"
 )
 
 // initApplication bootstraps the application
