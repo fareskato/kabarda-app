@@ -1,6 +1,7 @@
 package middlewares
 
 import (
+	"github.com/fareskato/kabarda"
 	"myapp/data"
 )
 
