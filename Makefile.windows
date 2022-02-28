@@ -1,0 +1,33 @@
+BINARY_NAME=KabardaApp.exe
+
+## build: builds all binaries
+build:
+    @go mod vendor
+    @echo Building Kabarda...
+    @go build -o tmp/${BINARY_NAME} .
+	@echo Building built!
+
+run:
+	@echo Staring Building...
+    @start /min cmd /c tmp\${BINARY_NAME} &
+	@echo Building started!
+
+clean:
+	@echo Cleaning...
+	@DEL ${BINARY_NAME}
+	@go clean
+	@echo Cleaned!
+
+test:
+	@echo Testing...
+	@go test ./...
+	@echo Done!
+
+start: run
+	
+stop:
+	@echo "Starting the front end..."
+	@taskkill /IM ${BINARY_NAME} /F
+	@echo Stopped Building
+
+restart: stop start
