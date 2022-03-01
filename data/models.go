@@ -15,7 +15,8 @@ var upper db2.Session
 // Models type: wraps all models, and it's filed of application type,
 // and it's accessible though out the entire application
 type Models struct {
-
+	//Users User
+	//Tokens Token
 }
 
 // New create Models type
@@ -29,9 +30,7 @@ func New(dbPool *sql.DB) Models {
 	default:
 		// nothing to do
 	}
-	return Models{
-
-	}
+	return Models{}
 }
 
 // getInsertedId returns the id as an int
