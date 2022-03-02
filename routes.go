@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/go-chi/chi/v5"
 	"net/http"
 )
 
@@ -9,10 +8,19 @@ import (
 func (a *application) routes() *chi.Mux {
 	// middlewares go first
 
-
 	// routes go here
 	a.get("/", a.Handlers.Home)
-	
+
+	// User auth routes
+	a.get("/users/register", a.Handlers.UserRegister)
+	a.post("/users/register", a.Handlers.UserRegisterPost)
+	a.get("/users/login", a.Handlers.UserLogin)
+	a.post("/users/login", a.Handlers.UserLoginPost)
+	a.get("/users/logout", a.Handlers.UserLogout)
+	a.get("/users/forgot-password", a.Handlers.ForgotPassword)
+	a.post("/users/forgot-password", a.Handlers.ForgotPasswordPost)
+	a.get("/users/reset-password", a.Handlers.ResetPasswordForm)
+	a.post("/users/reset-password", a.Handlers.ResetPasswordFormPost)
 
 	// static routes
 	fileServer := http.FileServer(http.Dir("./public"))
