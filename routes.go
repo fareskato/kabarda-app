@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+
 	"github.com/go-chi/chi/v5"
 )
 
@@ -13,19 +14,27 @@ func (a *application) routes() *chi.Mux {
 	a.get("/", a.Handlers.Home)
 
 	// User auth routes
-	//a.get("/users/register", a.Handlers.UserRegister)
-	//a.post("/users/register", a.Handlers.UserRegisterPost)
-	//a.get("/users/login", a.Handlers.UserLogin)
-	//a.post("/users/login", a.Handlers.UserLoginPost)
-	//a.get("/users/logout", a.Handlers.UserLogout)
-	//a.get("/users/forgot-password", a.Handlers.ForgotPassword)
-	//a.post("/users/forgot-password", a.Handlers.ForgotPasswordPost)
-	//a.get("/users/reset-password", a.Handlers.ResetPasswordForm)
-	//a.post("/users/reset-password", a.Handlers.ResetPasswordFormPost)
+	// a.App.Routes.Route("/users", func(r chi.Router) {
+	// 	r.Get("/register", a.Handlers.UserRegister)
+	// 	r.Post("/register", a.Handlers.UserRegisterPost)
+	// 	r.Get("/login", a.Handlers.UserLogin)
+	// 	r.Post("/login", a.Handlers.UserLoginPost)
+	// 	r.Get("/logout", a.Handlers.UserLogout)
+	// 	r.Get("/forgot-password", a.Handlers.ForgotPassword)
+	// 	r.Post("/forgot-password", a.Handlers.ForgotPasswordPost)
+	// 	r.Get("/reset-password", a.Handlers.ResetPasswordForm)
+	// 	r.Post("/reset-password", a.Handlers.ResetPasswordFormPost)
+	// })
 
 	// static routes
 	fileServer := http.FileServer(http.Dir("./public"))
 	a.handle("/public/*", http.StripPrefix("/public", fileServer))
+
+	/////////////
+	// API ROUTES
+	/////////////
+	a.App.Routes.Mount("/api", a.ApiRoutes())
+
 	// return the mux
 	return a.App.Routes
 }
