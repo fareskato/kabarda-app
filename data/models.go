@@ -2,13 +2,28 @@ package data
 
 import (
 	"database/sql"
+	"errors"
 	"fmt"
+	"os"
+
 	db2 "github.com/upper/db/v4"
 	"github.com/upper/db/v4/adapter/mysql"
 	"github.com/upper/db/v4/adapter/postgresql"
-	"os"
 )
 
+///////////////////////////
+// Models errors variables
+///////////////////////////
+var (
+	ErrorDuplicateEmailMessage = "ERROR: duplicate key value violates unique constraint \"users_email_key\" (SQLSTATE 23505)"
+	ErrorDuplicateEmail        = errors.New("duplicate email, please use another email")
+	ErrorRecordNotFound        = errors.New("record not found")
+	ErrorPasswordMatch         = errors.New("password matches error")
+)
+
+////////////////
+// DB variables
+////////////////
 var db *sql.DB
 var upper db2.Session
 

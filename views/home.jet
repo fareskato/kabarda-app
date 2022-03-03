@@ -15,12 +15,12 @@ Home
             <div>
                 <img src="/public/images/kabarda.png" class="mb-5" style="width: 100px;height:auto;">
                 <h1>Kabarda</h1>
+                <h5>Golang web framework</h5>
                 <hr>
-                <small class="text-muted">Адыгэ Уей Уей</small>
-                <br>
+                <p class="text-success text-bold">Адыгэ Уей Уей</p>
             </div>
         </div>
-       <hr>
+
     </div>
 
 
