@@ -10,6 +10,17 @@ Home
 
 {{ block pageContent() }}
 
+    {{if .Error != ""}}
+    <div class="alert alert-danger text-center">
+        {{.Error}}
+    </div>
+    {{end}}
+    {{if .Flash != ""}}
+    <div class="alert alert-info text-center">
+        {{.Flash}}
+    </div>
+    {{end}}
+
     <div class="col text-center">
         <div class="d-flex align-items-center justify-content-center">
             <div>
@@ -20,6 +31,7 @@ Home
                 <p class="text-success text-bold">Адыгэ Уей Уей</p>
             </div>
         </div>
+        
 
     </div>
 

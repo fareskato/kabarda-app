@@ -2,8 +2,9 @@ package handlers
 
 import (
 	"context"
-	"github.com/fareskato/kabarda"
 	"net/http"
+
+	"github.com/fareskato/kabarda"
 )
 
 /*
@@ -65,4 +66,13 @@ func (h *Handlers) decrypt(txt string) (string, error) {
 		return "", err
 	}
 	return decrypted, nil
+}
+func (h *Handlers) getHttpProto(r *http.Request) string {
+	var proto string
+	if r.TLS != nil {
+		proto = "https"
+	} else {
+		proto = "http"
+	}
+	return proto
 }

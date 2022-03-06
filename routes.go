@@ -13,18 +13,30 @@ func (a *application) routes() *chi.Mux {
 	// routes go here
 	a.get("/", a.Handlers.Home)
 
-	// User auth routes
-	// a.App.Routes.Route("/users", func(r chi.Router) {
-	// 	r.Get("/register", a.Handlers.UserRegister)
-	// 	r.Post("/register", a.Handlers.UserRegisterPost)
-	// 	r.Get("/login", a.Handlers.UserLogin)
-	// 	r.Post("/login", a.Handlers.UserLoginPost)
-	// 	r.Get("/logout", a.Handlers.UserLogout)
-	// 	r.Get("/forgot-password", a.Handlers.ForgotPassword)
-	// 	r.Post("/forgot-password", a.Handlers.ForgotPasswordPost)
-	// 	r.Get("/reset-password", a.Handlers.ResetPasswordForm)
-	// 	r.Post("/reset-password", a.Handlers.ResetPasswordFormPost)
-	// })
+	/*
+		// User auth routes
+		a.route("/users", func(r chi.Router) {
+			r.Get("/register", a.Handlers.UserRegister)
+			r.Post("/register", a.Handlers.UserRegisterPost)
+			r.Get("/login", a.Handlers.UserLogin)
+			r.Post("/login", a.Handlers.UserLoginPost)
+			r.Get("/logout", a.Handlers.UserLogout)
+			r.Get("/forgot-password", a.Handlers.ForgotPassword)
+			r.Post("/forgot-password", a.Handlers.ForgotPasswordPost)
+			r.Get("/reset-password", a.Handlers.ResetPasswordForm)
+			r.Post("/reset-password", a.Handlers.ResetPasswordFormPost)
+		})
+
+		// admin routes
+		a.route("/admin", func(r chi.Router) {
+			r.Use(a.Middleware.Auth)
+			r.Get("/dashboard", a.Handlers.Dashboard)
+			r.NotFound(a.Handlers.NotFoundDashboard)
+		})
+	*/
+
+	// 404
+	a.App.Routes.NotFound(a.Handlers.NotFound)
 
 	// static routes
 	fileServer := http.FileServer(http.Dir("./public"))
@@ -42,6 +54,10 @@ func (a *application) routes() *chi.Mux {
 ///////////////////////////////////////////////
 // Helpers functions to make the routing easier
 ///////////////////////////////////////////////
+// route uses to group routes
+func (a *application) route(path string, f func(h chi.Router)) {
+	a.App.Routes.Route(path, f)
+}
 
 // get helper
 func (a *application) get(path string, h http.HandlerFunc) {
