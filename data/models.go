@@ -45,7 +45,10 @@ func New(dbPool *sql.DB) Models {
 	default:
 		// nothing to do
 	}
-	return Models{}
+	return Models{
+	    //Users:  User{},
+	    //Tokens: Token{},
+	}
 }
 
 // getInsertedId returns the id as an int
